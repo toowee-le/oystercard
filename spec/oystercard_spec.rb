@@ -22,11 +22,16 @@ describe Oystercard do
   end
 
   it 'in_journey? should start as false' do
-    expect(subject.in_journey?).to eq false
+    expect(subject.in_journey).to eq false
   end
 
   it 'touch_in sets the journey to true' do
     subject.touch_in
-    expect(subject.in_journey?).to eq true
+    expect(subject.in_journey).to eq true
+  end
+
+  it 'touch_out sets the journey to false' do
+    subject.touch_out
+    expect(subject.in_journey).to eq false
   end
 end
