@@ -26,6 +26,7 @@ describe Oystercard do
   end
 
   it 'touch_in sets the journey to true' do
+    subject.top_up(10)
     subject.touch_in
     expect(subject.in_journey).to eq true
   end
@@ -33,5 +34,9 @@ describe Oystercard do
   it 'touch_out sets the journey to false' do
     subject.touch_out
     expect(subject.in_journey).to eq false
+  end
+
+  it 'has minimum amount of £1' do
+    expect {subject.touch_in}.to raise_error "Please top up"
   end
 end
