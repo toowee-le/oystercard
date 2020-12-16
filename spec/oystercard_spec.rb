@@ -37,6 +37,12 @@ describe Oystercard do
   end
 
   it 'has minimum amount of £1' do
-    expect {subject.touch_in}.to raise_error "Please top up"
+    expect { subject.touch_in }.to raise_error "Please top up"
+  end
+
+  it '#touch_out reduces the balance by minimum fare' do
+    subject.top_up(30)
+    subject.touch_in
+    expect{ subject.touch_out }.to change{ subject.balance }.by -Oystercard::MINIMUM_CHARGE
   end
 end

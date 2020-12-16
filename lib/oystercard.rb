@@ -3,6 +3,7 @@ class Oystercard
 
   BALANCE_LIMIT = 90
   MINIMUM_FARE = 1
+  MINIMUM_CHARGE = 4
 
   def initialize
     @balance = 0
@@ -15,6 +16,7 @@ class Oystercard
   end
 
   def touch_out
+    deduct(MINIMUM_CHARGE)
     @in_journey = false
   end
 
