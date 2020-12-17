@@ -2,7 +2,7 @@ require 'oystercard'
 
 describe Oystercard do
   let(:entry_station){ double :station }
-  let(:exit_station){ double :exit_station }
+  let(:exit_station){ double :station }
   let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
 
   describe '#balance' do
@@ -80,8 +80,3 @@ describe Oystercard do
     end
   end
 end
-
-# Use a hash to store one journey (set of an entry and exit stations)
-# Write a test that checks that the card has an empty list of journeys by default
-# Write a test that checks that touching in and out creates one journey
-# Keep all code including tests DRY
