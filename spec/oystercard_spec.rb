@@ -3,6 +3,7 @@ require 'oystercard'
 describe Oystercard do
   let(:entry_station){ double :station }
   let(:exit_station){ double :exit_station }
+  let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
 
   describe '#balance' do
     it 'has default balance of 0' do
@@ -69,6 +70,13 @@ describe Oystercard do
   describe '#journey_history' do
     it 'is empty to begin with' do
       expect(subject.journey_history).to be_empty
+    end
+
+    it 'stores a journey to the journey history list' do
+      subject.top_up(10)
+      subject.touch_in(entry_station)
+      subject.touch_out(exit_station)
+      expect(subject.journey_history).to include journey
     end
   end
 end
