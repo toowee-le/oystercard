@@ -2,6 +2,7 @@ require 'oystercard'
 
 describe Oystercard do
   let(:station){ double :station }
+  let(:exit_station){ double :exit_station }
 
   describe '#balance' do
     it 'default balance of 0' do
@@ -45,16 +46,23 @@ describe Oystercard do
     end
   end
   
-  describe '#touch_out' do
+  describe '#touch_out' do                                               
     it 'touch_out sets the journey to false' do
-      subject.touch_out
+      subject.touch_out(exit_station)
       expect(subject.in_journey).to eq false
     end
 
     it 'touch_out reduces the balance by minimum charge' do
       subject.top_up(30)
       subject.touch_in(station)
-      expect{ subject.touch_out }.to change{ subject.balance }.by -Oystercard::MINIMUM_CHARGE
+      expect{ subject.touch_out(exit_station) }.to change{ subject.balance }.by -Oystercard::MINIMUM_CHARGE
+    end
+
+    it 'stores the exit station' do
+      subject.top_up(10)
+      subject.touch_in(station)
+      subject.touch_out(exit_station)
+      expect(subject.exit_station).to eq exit_station
     end
   end
-end
+end        
