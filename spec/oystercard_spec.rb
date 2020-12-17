@@ -65,4 +65,15 @@ describe Oystercard do
       expect(subject.exit_station).to eq exit_station
     end
   end
-end        
+
+  describe '#journey_history' do
+    it 'is empty to begin with' do
+      expect(subject.journey_history).to be_empty
+    end
+  end
+end
+
+# Use a hash to store one journey (set of an entry and exit stations)
+# Write a test that checks that the card has an empty list of journeys by default
+# Write a test that checks that touching in and out creates one journey
+# Keep all code including tests DRY
