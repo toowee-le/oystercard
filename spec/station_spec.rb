@@ -1,6 +1,8 @@
 require 'station'
 
 describe Station do
+  subject {described_class.new(name: nil, zone: nil)}
+
   it 'initialises with a station name' do
     expect(subject.name).to eq nil
   end
