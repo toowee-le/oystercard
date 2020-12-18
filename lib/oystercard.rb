@@ -26,7 +26,6 @@ class Oystercard
     deduct(MINIMUM_CHARGE)
     @exit_station = exit_station
     @journey_history << {:entry_station => @entry_station, :exit_station => @exit_station}
-    @entry_station = nil
   end
 
   def top_up(amount)
